@@ -67,19 +67,39 @@ EOF
 )
 
 # ---------------------------------------------------------------------------
-# 调用 CreateTestCase
-#   --content 需要的是 JSON 字符串，这里用 file:// 直接读取文件内容
+# 幂等处理：先按名称查找是否已存在同名 Test Case
+#   - 已存在 -> UpdateTestCase（更新 Content / EntryPoint / Status）
+#   - 不存在 -> CreateTestCase
 # ---------------------------------------------------------------------------
-echo "正在创建 Test Case: ${TEST_CASE_NAME} ..."
-
-aws connect create-test-case \
+EXISTING_ID=$(aws connect list-test-cases \
   --region "${REGION}" \
   --instance-id "${INSTANCE_ID}" \
-  --name "${TEST_CASE_NAME}" \
-  --description "${TEST_CASE_DESC}" \
-  --content "file://${CONTENT_FILE}" \
-  --entry-point "${ENTRY_POINT}" \
-  --status "${STATUS}" \
-  --output json
+  --query "TestCaseSummaryList[?Name=='${TEST_CASE_NAME}'].Id | [0]" \
+  --output text)
 
-echo "完成。"
+if [[ -n "${EXISTING_ID}" && "${EXISTING_ID}" != "None" ]]; then
+  echo "已存在同名 Test Case (Id=${EXISTING_ID})，执行更新 ..."
+  aws connect update-test-case \
+    --region "${REGION}" \
+    --instance-id "${INSTANCE_ID}" \
+    --test-case-id "${EXISTING_ID}" \
+    --name "${TEST_CASE_NAME}" \
+    --description "${TEST_CASE_DESC}" \
+    --content "file://${CONTENT_FILE}" \
+    --entry-point "${ENTRY_POINT}" \
+    --status "${STATUS}" \
+    --output json
+  echo "更新完成。TestCaseId=${EXISTING_ID}"
+else
+  echo "正在创建 Test Case: ${TEST_CASE_NAME} ..."
+  aws connect create-test-case \
+    --region "${REGION}" \
+    --instance-id "${INSTANCE_ID}" \
+    --name "${TEST_CASE_NAME}" \
+    --description "${TEST_CASE_DESC}" \
+    --content "file://${CONTENT_FILE}" \
+    --entry-point "${ENTRY_POINT}" \
+    --status "${STATUS}" \
+    --output json
+  echo "创建完成。"
+fi

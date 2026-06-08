@@ -28,8 +28,8 @@ INSTANCE_ID="arn:aws:connect:us-west-2:991727053196:instance/2ff5674e-de94-4714-
 FLOW_ID="arn:aws:connect:us-west-2:991727053196:instance/2ff5674e-de94-4714-bc6d-d7f2cebeee9d/contact-flow/b3075f06-622a-4b23-9846-bbcfd423fbbd"
 
 # 测试用例名称与描述
-TEST_CASE_NAME="RequestRepair-Chat-WorkOrder-Test"
-TEST_CASE_DESC="Chat 渠道下发送 request repair，验证手机尾号 3641，收集 product/version/province/city/district/brand/issue description，并验证 work order 是否有值。"
+TEST_CASE_NAME="RequestRepair-Chat-Smoke-Test"
+TEST_CASE_DESC="冒烟测试: Chat 渠道下发送 request repair，验证 flow 正常将客户接入 Amazon Q bot（匹配 flow 原生 welcome 消息）。注意: 该 flow 经 ConnectParticipantWithLexBot 接入生成式 bot，bot 的流式回复无法被测试框架观察，端到端报修/工单验证请使用 e2e-repair-test.sh。"
 
 # 测试内容 JSON 文件（Testing language）
 CONTENT_FILE="$(dirname "$0")/test-case-content.json"

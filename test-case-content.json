@@ -18,271 +18,35 @@
             "Actor": "Customer",
             "Instruction": {
               "Type": "Utterance",
-              "Properties": { "Value": "request repair" }
+              "Properties": { "Value": "I want to request a repair. My phone number is 18618383641 and the last four digits are 3641." }
             }
           },
           "Transitions": {}
         }
       ],
-      "Transitions": { "NextObservations": ["VerifyPhone"] }
+      "Transitions": {}
     },
 
     {
-      "Identifier": "VerifyPhone",
+      "Identifier": "VerifyFlowConnectsBot",
       "Event": {
-        "Identifier": "evt-verify-phone",
+        "Identifier": "evt-welcome",
         "Type": "MessageReceived",
         "Actor": "System",
         "Properties": {
-          "Text": "Please provide the last 4 digits of your phone number",
-          "MatchingCriteria": { "Type": "Similarity" }
+          "Text": "How can I help you today",
+          "MatchingCriteria": { "Type": "Inclusion" }
         }
       },
       "Actions": [
-        {
-          "Identifier": "send-phone-3641",
-          "Type": "SendInstruction",
-          "Parameters": {
-            "Actor": "Customer",
-            "Instruction": {
-              "Type": "Utterance",
-              "Properties": { "Value": "3641" }
-            }
-          },
-          "Transitions": {}
-        }
-      ],
-      "Transitions": { "NextObservations": ["CollectProduct"] }
-    },
-
-    {
-      "Identifier": "CollectProduct",
-      "Event": {
-        "Identifier": "evt-collect-product",
-        "Type": "MessageReceived",
-        "Actor": "System",
-        "Properties": {
-          "Text": "What is the product?",
-          "MatchingCriteria": { "Type": "Similarity" }
-        }
-      },
-      "Actions": [
-        {
-          "Identifier": "send-product",
-          "Type": "SendInstruction",
-          "Parameters": {
-            "Actor": "Customer",
-            "Instruction": {
-              "Type": "Utterance",
-              "Properties": { "Value": "Refrigerator" }
-            }
-          },
-          "Transitions": {}
-        }
-      ],
-      "Transitions": { "NextObservations": ["CollectVersion"] }
-    },
-
-    {
-      "Identifier": "CollectVersion",
-      "Event": {
-        "Identifier": "evt-collect-version",
-        "Type": "MessageReceived",
-        "Actor": "System",
-        "Properties": {
-          "Text": "What is the version?",
-          "MatchingCriteria": { "Type": "Similarity" }
-        }
-      },
-      "Actions": [
-        {
-          "Identifier": "send-version",
-          "Type": "SendInstruction",
-          "Parameters": {
-            "Actor": "Customer",
-            "Instruction": {
-              "Type": "Utterance",
-              "Properties": { "Value": "V2.0" }
-            }
-          },
-          "Transitions": {}
-        }
-      ],
-      "Transitions": { "NextObservations": ["CollectProvince"] }
-    },
-
-    {
-      "Identifier": "CollectProvince",
-      "Event": {
-        "Identifier": "evt-collect-province",
-        "Type": "MessageReceived",
-        "Actor": "System",
-        "Properties": {
-          "Text": "What is the province?",
-          "MatchingCriteria": { "Type": "Similarity" }
-        }
-      },
-      "Actions": [
-        {
-          "Identifier": "send-province",
-          "Type": "SendInstruction",
-          "Parameters": {
-            "Actor": "Customer",
-            "Instruction": {
-              "Type": "Utterance",
-              "Properties": { "Value": "Guangdong" }
-            }
-          },
-          "Transitions": {}
-        }
-      ],
-      "Transitions": { "NextObservations": ["CollectCity"] }
-    },
-
-    {
-      "Identifier": "CollectCity",
-      "Event": {
-        "Identifier": "evt-collect-city",
-        "Type": "MessageReceived",
-        "Actor": "System",
-        "Properties": {
-          "Text": "What is the city?",
-          "MatchingCriteria": { "Type": "Similarity" }
-        }
-      },
-      "Actions": [
-        {
-          "Identifier": "send-city",
-          "Type": "SendInstruction",
-          "Parameters": {
-            "Actor": "Customer",
-            "Instruction": {
-              "Type": "Utterance",
-              "Properties": { "Value": "Shenzhen" }
-            }
-          },
-          "Transitions": {}
-        }
-      ],
-      "Transitions": { "NextObservations": ["CollectDistrict"] }
-    },
-
-    {
-      "Identifier": "CollectDistrict",
-      "Event": {
-        "Identifier": "evt-collect-district",
-        "Type": "MessageReceived",
-        "Actor": "System",
-        "Properties": {
-          "Text": "What is the district?",
-          "MatchingCriteria": { "Type": "Similarity" }
-        }
-      },
-      "Actions": [
-        {
-          "Identifier": "send-district",
-          "Type": "SendInstruction",
-          "Parameters": {
-            "Actor": "Customer",
-            "Instruction": {
-              "Type": "Utterance",
-              "Properties": { "Value": "Nanshan" }
-            }
-          },
-          "Transitions": {}
-        }
-      ],
-      "Transitions": { "NextObservations": ["CollectBrand"] }
-    },
-
-    {
-      "Identifier": "CollectBrand",
-      "Event": {
-        "Identifier": "evt-collect-brand",
-        "Type": "MessageReceived",
-        "Actor": "System",
-        "Properties": {
-          "Text": "What is the brand?",
-          "MatchingCriteria": { "Type": "Similarity" }
-        }
-      },
-      "Actions": [
-        {
-          "Identifier": "send-brand",
-          "Type": "SendInstruction",
-          "Parameters": {
-            "Actor": "Customer",
-            "Instruction": {
-              "Type": "Utterance",
-              "Properties": { "Value": "BrandX" }
-            }
-          },
-          "Transitions": {}
-        }
-      ],
-      "Transitions": { "NextObservations": ["CollectIssueDescription"] }
-    },
-
-    {
-      "Identifier": "CollectIssueDescription",
-      "Event": {
-        "Identifier": "evt-collect-issue",
-        "Type": "MessageReceived",
-        "Actor": "System",
-        "Properties": {
-          "Text": "Please describe the issue",
-          "MatchingCriteria": { "Type": "Similarity" }
-        }
-      },
-      "Actions": [
-        {
-          "Identifier": "send-issue",
-          "Type": "SendInstruction",
-          "Parameters": {
-            "Actor": "Customer",
-            "Instruction": {
-              "Type": "Utterance",
-              "Properties": { "Value": "The device does not power on" }
-            }
-          },
-          "Transitions": {}
-        }
-      ],
-      "Transitions": { "NextObservations": ["VerifyWorkOrder"] }
-    },
-
-    {
-      "Identifier": "VerifyWorkOrder",
-      "Event": {
-        "Identifier": "evt-work-order",
-        "Type": "MessageReceived",
-        "Actor": "System",
-        "Properties": {
-          "Text": "Your work order has been created",
-          "MatchingCriteria": { "Type": "Similarity" }
-        }
-      },
-      "Actions": [
-        {
-          "Identifier": "assert-work-order-has-value",
-          "Type": "Assert",
-          "Parameters": {
-            "Namespace": "$.Attributes.WorkOrder",
-            "Operator": "TextStartsWith",
-            "Operand": "WO"
-          },
-          "Transitions": { "NextAction": "end-test" }
-        },
         {
           "Identifier": "end-test",
           "Type": "TestControl",
-          "Parameters": {
-            "Command": { "Type": "EndTest" }
-          },
+          "Parameters": { "Command": { "Type": "EndTest" } },
           "Transitions": {}
         }
       ],
-      "Transitions": { "NextObservations": [] }
+      "Transitions": {}
     }
   ]
 }

@@ -1,0 +1,334 @@
+{
+  "Version": "2019-10-30",
+  "Metadata": {},
+  "Observations": [
+    {
+      "Identifier": "TestStart",
+      "Event": {
+        "Identifier": "evt-test-initiated",
+        "Type": "TestInitiated",
+        "Actor": "System",
+        "Properties": {}
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-request-repair",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "request repair",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["VerifyPhone"] }
+    },
+
+    {
+      "Identifier": "VerifyPhone",
+      "Event": {
+        "Identifier": "evt-verify-phone",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "Please provide the last 4 digits of your phone number"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-phone-3641",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "3641",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["CollectProduct"] }
+    },
+
+    {
+      "Identifier": "CollectProduct",
+      "Event": {
+        "Identifier": "evt-collect-product",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "What is the product?"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-product",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "Refrigerator",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["CollectVersion"] }
+    },
+
+    {
+      "Identifier": "CollectVersion",
+      "Event": {
+        "Identifier": "evt-collect-version",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "What is the version?"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-version",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "V2.0",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["CollectProvince"] }
+    },
+
+    {
+      "Identifier": "CollectProvince",
+      "Event": {
+        "Identifier": "evt-collect-province",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "What is the province?"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-province",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "Guangdong",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["CollectCity"] }
+    },
+
+    {
+      "Identifier": "CollectCity",
+      "Event": {
+        "Identifier": "evt-collect-city",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "What is the city?"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-city",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "Shenzhen",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["CollectDistrict"] }
+    },
+
+    {
+      "Identifier": "CollectDistrict",
+      "Event": {
+        "Identifier": "evt-collect-district",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "What is the district?"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-district",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "Nanshan",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["CollectBrand"] }
+    },
+
+    {
+      "Identifier": "CollectBrand",
+      "Event": {
+        "Identifier": "evt-collect-brand",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "What is the brand?"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-brand",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "BrandX",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["CollectIssueDescription"] }
+    },
+
+    {
+      "Identifier": "CollectIssueDescription",
+      "Event": {
+        "Identifier": "evt-collect-issue",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "Please describe the issue"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "send-issue",
+          "Type": "SendInstruction",
+          "Parameters": {
+            "ActionType": "SendInstruction",
+            "Actor": "Customer",
+            "Instruction": {
+              "Type": "TextUtterance",
+              "Properties": {
+                "Text": "The device does not power on",
+                "LanguageCode": "en-US"
+              }
+            }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": ["VerifyWorkOrder"] }
+    },
+
+    {
+      "Identifier": "VerifyWorkOrder",
+      "Event": {
+        "Identifier": "evt-work-order",
+        "Type": "MessageReceived",
+        "Actor": "System",
+        "Properties": {
+          "Text": "Your work order has been created"
+        },
+        "MatchingCriteria": "Similarity"
+      },
+      "Usage": { "Type": "EXACTLY" },
+      "Actions": [
+        {
+          "Identifier": "assert-work-order-exists",
+          "Type": "Assert",
+          "Parameters": {
+            "Namespace": "$.Attributes.WorkOrder",
+            "Operator": "Exists"
+          },
+          "Transitions": { "NextAction": "end-test" }
+        },
+        {
+          "Identifier": "end-test",
+          "Type": "TestControl",
+          "Parameters": {
+            "ActionType": "TestControl",
+            "Command": { "Type": "EndTest" }
+          },
+          "Transitions": { "NextAction": "" }
+        }
+      ],
+      "Transitions": { "NextObservations": [] }
+    }
+  ]
+}
